@@ -1,5 +1,5 @@
 {
-    "name": "jlorente/laravel-data-migrations",
+    "name": "friendsofcat/laravel-data-migrations",
     "description": "An extension to allow you to separate data migrations from structure migrations",
     "license": "MIT",
     "authors": [{
@@ -8,7 +8,8 @@
         }],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/support": ">=5.5"
+        "laravel/framework": "^8.0",
+        "illuminate/support": "^8.0"
     },
     "autoload": {
         "psr-4": {

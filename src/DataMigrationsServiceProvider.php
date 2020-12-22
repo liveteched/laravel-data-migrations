@@ -9,6 +9,7 @@
 
 namespace Jlorente\DataMigrations;
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Migrations\Migrator;
 use Jlorente\DataMigrations\Console\Commands\InstallCommand as MigrateInstallCommand;
@@ -19,7 +20,7 @@ use Jlorente\DataMigrations\Repositories\DatabaseDataMigrationRepository;
 
 /**
  * DataMigrationsServiceProvider class.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 class DataMigrationsServiceProvider extends ServiceProvider
@@ -131,7 +132,7 @@ class DataMigrationsServiceProvider extends ServiceProvider
     protected function bindArtisanCommands()
     {
         $this->app->singleton('command.migrate-data', function ($app) {
-            return new MigrateDataCommand($app['migrator.data']);
+            return new MigrateDataCommand($app['migrator.data'], app(Dispatcher::class));
         });
         $this->app->singleton('command.migrate-data.install', function ($app) {
             return new MigrateInstallCommand($app['migration.data.repository']);
